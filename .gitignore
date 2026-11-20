@@ -1,0 +1,28 @@
+# Copia empaquetada del proyecto (los mismos archivos ya están en el repositorio)
+*.zip
+
+# Sistema operativo y editores
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Documentos privados para la dueña (contienen datos de pago de la tienda)
+Guia-para-la-duena-*.pdf
+
+# Dependencias y registros
+node_modules/
+*.log
+
+# Configuración local de herramientas y secretos
+.claude/
+.firebase/
+.firebaserc
+.env
+.env.*
+functions/.secret.local
+functions/.runtimeconfig.json
+
+# Archivo original del logo (la versión optimizada está en assets/img/)
+Logo de empresa.jpeg

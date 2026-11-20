@@ -1,0 +1,90 @@
+rules_version = '2';
+
+// Reglas de Cloud Firestore para Johari Shop Beauty.
+// - Cualquiera puede LEER el catálogo (products).
+// - Solo la administradora puede crear, editar o eliminar productos.
+// - La administradora es quien tiene un documento admins/{UID} creado desde la consola
+//   de Firebase (entorno confiable) y además tiene el correo verificado.
+// - Nadie puede escribir en admins/ desde la web: ningún cliente puede darse el rol.
+// - Los pedidos (orders/) y el descuento de stock por pagos solo los hacen las Cloud Functions.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner() {
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function optionalPrice(v) {
+      return v == null || ((v is int || v is float) && v > 0 && v < 1000000);
+    }
+
+    function validProduct(d) {
+      return d.keys().hasOnly(['name', 'brand', 'category', 'presentation', 'description',
+                               'price', 'previousPrice', 'stock', 'variants', 'image',
+                               'order', 'source', 'updatedAt'])
+        && d.keys().hasAll(['name', 'brand', 'category', 'price', 'stock', 'variants', 'image'])
+        && d.name is string && d.name.size() >= 2 && d.name.size() <= 120
+        && d.brand is string && d.brand.size() <= 80
+        && d.category in ['Maquillaje', 'Skincare', 'Perfumes/Mists', 'Bolsos y Accesorios']
+        && (!('presentation' in d) || (d.presentation is string && d.presentation.size() <= 120))
+        && (!('description' in d) || (d.description is string && d.description.size() <= 1000))
+        && optionalPrice(d.price)
+        && (!('previousPrice' in d) || optionalPrice(d.previousPrice))
+        && (d.stock == null || (d.stock is int && d.stock >= 0))
+        && d.variants is list && d.variants.size() <= 40
+        && d.image is string && d.image.size() <= 900000
+        && (!('order' in d) || d.order is int || d.order is float)
+        && (!('source' in d) || (d.source is string && d.source.size() <= 80))
+        && (!('updatedAt' in d) || d.updatedAt == request.time);
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update: if isOwner() && validProduct(request.resource.data);
+      allow delete: if isOwner();
+    }
+
+    // Perfil de cada cliente. El rol siempre es 'customer' y no se puede cambiar desde la web.
+    match /users/{userId} {
+      allow read: if signedIn() && (request.auth.uid == userId || isOwner());
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['name', 'email', 'role', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 80
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.role == 'customer'
+        && request.resource.data.createdAt == request.time;
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 80;
+      allow delete: if false;
+    }
+
+    // Pedidos pagados en línea. Solo los crean y actualizan las Cloud Functions
+    // (Admin SDK, que no pasa por estas reglas); la administradora puede leerlos.
+    match /orders/{orderId} {
+      allow read: if isOwner();
+      allow write: if false;
+    }
+
+    // Lista de administradoras: solo lectura del propio documento; se gestiona desde la consola.
+    match /admins/{adminId} {
+      allow read: if signedIn() && request.auth.uid == adminId;
+      allow write: if false;
+    }
+
+    // Todo lo demás queda cerrado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

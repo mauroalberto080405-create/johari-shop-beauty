@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Johari Shop Beauty · Base
+   Tokens de diseño, reset, tipografía y utilidades.
+   ========================================================================== */
+
+:root {
+  /* Paleta */
+  --c-rosa: #fff0f5;
+  --c-rosa-100: #ffe4ee;
+  --c-rosa-200: #f9d3e0;
+  --c-oro: #d4af37;
+  --c-oro-light: #f6ecc9;
+  --c-oro-dark: #7a5c00;
+  --c-nude-50: #fbf6f1;
+  --c-nude-100: #f3e8de;
+  --c-nude-200: #e8d5c4;
+  --c-nude-400: #c8a48a;
+  --c-nude-600: #8c6650;
+  --c-ink: #2b2024;
+  --c-ink-soft: #5a4a50;
+  --c-white: #fff;
+  --c-success: #14532d;
+  --c-success-bg: #e3f3ea;
+  --c-danger: #9b1c1c;
+  --c-danger-bg: #fdecec;
+  --c-whatsapp: #1f8f4e;
+
+  /* Tipografía */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-hero: clamp(2.25rem, 5vw + 1rem, 3.75rem);
+
+  /* Espaciado, radios y sombras */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(43, 32, 36, 0.06);
+  --shadow-md: 0 8px 24px rgba(43, 32, 36, 0.08);
+  --shadow-lg: 0 24px 60px rgba(43, 32, 36, 0.18);
+
+  --container: 72rem;
+  --header-h: 4.75rem;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 6rem; /* espacio para los botones flotantes */
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+h1, h2, h3, p, ul, ol, figure, fieldset, dl, dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-oro-dark);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--c-rosa-200);
+}
+
+/* ---------- Tipografía ---------- */
+.section-title,
+.panel-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+}
+
+.panel-title {
+  font-size: var(--fs-xl);
+}
+
+.eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-oro-dark);
+}
+
+.muted {
+  color: var(--c-ink-soft);
+}
+
+.small {
+  font-size: var(--fs-sm);
+}
+
+.price-old {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
+/* ---------- Utilidades ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--c-ink);
+  color: var(--c-white);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+.icon-sprite {
+  display: none;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.icon--sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon--lg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.icon--xl {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Oculta elementos secundarios en pantallas pequeñas (gana a las reglas de componente). */
+@media (max-width: 639px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+.noscript {
+  padding: var(--space-4);
+  text-align: center;
+  background: var(--c-oro-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

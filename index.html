@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Johari Shop Beauty | Maquillaje, skincare, perfumes y accesorios</title>
+  <meta name="description" content="Johari Shop Beauty: maquillaje, skincare, perfumes, mists, bolsos y accesorios originales. Compra en línea o coordina tu pedido por WhatsApp.">
+  <meta name="theme-color" content="#FFF0F5">
+  <link rel="icon" href="assets/img/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Johari Shop Beauty">
+  <meta property="og:description" content="Maquillaje, accesorios y mucho más. Compra en línea o coordina tu pedido por WhatsApp.">
+  <meta property="og:image" content="assets/img/og-johari.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#catalogo">Saltar al catálogo</a>
+
+  <!-- Íconos (sprite SVG reutilizable con <use>) -->
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></g></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5.5-5.5L5 20"/></g></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></g></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></g></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="currentColor"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></symbol>
+  </svg>
+
+  <div id="page">
+    <div class="mode-banner" role="note">
+      <div class="container mode-banner__inner">
+        <span class="mode-banner__dot" aria-hidden="true"></span>
+        <p id="modeBannerText">Cargando…</p>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="#inicio" class="brand" aria-label="Johari Shop Beauty, ir al inicio">
+          <img class="brand__logo" src="assets/img/logo-johari.jpg" alt="Johari: maquillaje, accesorios y mucho más" width="394" height="233">
+        </a>
+        <nav class="site-nav" aria-label="Principal">
+          <a href="#catalogo" class="site-nav__link desktop-only">Catálogo</a>
+          <button id="accountBtn" type="button" class="site-nav__link">
+            <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+            <span id="accountLabel" class="site-nav__label">Ingresar</span>
+          </button>
+          <button id="cartBtn" type="button" class="cart-button" aria-haspopup="dialog" aria-controls="cartDrawer">
+            <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+            <span class="desktop-only">Carrito</span>
+            <span id="cartCount" class="cart-button__count">0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <img class="hero__logo" src="assets/img/logo-johari.jpg" alt="" width="394" height="233">
+            <p class="eyebrow">Catálogo septiembre 2026</p>
+            <h1 id="heroTitle" class="hero__title">Belleza original, <em>elegida para ti</em></h1>
+            <p class="hero__lead">Maquillaje, skincare, perfumes, mists, bolsos y accesorios originales traídos desde el exterior. Arma tu pedido, paga en línea o coordínalo por WhatsApp.</p>
+            <div class="hero__actions">
+              <a id="exploreBtn" href="#catalogo" class="btn btn--primary btn--lg">Explorar catálogo</a>
+              <a href="https://wa.me/51994426141" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Escríbenos
+              </a>
+            </div>
+            <ul class="hero__perks" aria-label="Beneficios">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg>Productos 100% originales</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Envíos a nivel nacional</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span id="perkPayment">Pago seguro con Culqi</span></li>
+            </ul>
+          </div>
+          <div class="hero__showcase" aria-hidden="true">
+            <figure class="hero__card hero__card--a"><img src="assets/img/products/p12.jpg" alt="" width="320" height="320"></figure>
+            <figure class="hero__card hero__card--b"><img src="assets/img/products/p39.jpg" alt="" width="320" height="320"></figure>
+            <figure class="hero__card hero__card--c"><img src="assets/img/products/p76.jpg" alt="" width="320" height="320"></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="catalogo" class="catalog container" aria-labelledby="catalogTitle">
+        <div class="catalog__head">
+          <h2 id="catalogTitle" class="section-title">Catálogo</h2>
+          <p id="resultCount" class="muted" aria-live="polite"></p>
+        </div>
+        <div class="search">
+          <label for="searchInput" class="field__label">Buscar por nombre o marca</label>
+          <div class="search__box">
+            <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <input id="searchInput" class="input search__input" type="search" autocomplete="off" placeholder="Ej.: Dior, rubor, Victoria's Secret…">
+          </div>
+        </div>
+        <div id="categoryFilters" class="chips" role="group" aria-label="Filtrar por categoría"></div>
+        <div id="catalogStatus" class="catalog__status"></div>
+        <ul id="productGrid" class="product-grid" aria-label="Productos"></ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <img class="brand__logo brand__logo--footer" src="assets/img/logo-johari.jpg" alt="Johari Shop Beauty: maquillaje, accesorios y mucho más" width="394" height="233" loading="lazy">
+          <p class="muted">Tienda online y física. Envíos a nivel nacional: el costo de envío se coordina por WhatsApp.</p>
+        </div>
+        <div>
+          <h2 class="site-footer__title">Contacto</h2>
+          <ul class="link-list">
+            <li><a href="https://wa.me/51994426141" target="_blank" rel="noopener noreferrer">WhatsApp: +51 994 426 141</a></li>
+            <li><a href="https://www.instagram.com/johari_shopbeauty/" target="_blank" rel="noopener noreferrer">Instagram: @JOHARI_SHOPBEAUTY</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="site-footer__title">Medios de pago</h2>
+          <ul class="pay-methods" aria-label="Medios de pago aceptados">
+            <li class="pay-methods__item"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg>Tarjetas</li>
+            <li class="pay-methods__item pay-methods__item--yape">Yape</li>
+            <li class="pay-methods__item">Transferencia</li>
+          </ul>
+          <p class="muted small">Los pagos en línea los procesa Culqi: la tienda no ve ni guarda los datos de tu tarjeta. Los datos para transferencia se solicitan por WhatsApp.</p>
+        </div>
+      </div>
+      <p class="site-footer__legal">© <span id="year"></span> Johari Shop Beauty</p>
+    </footer>
+  </div>
+
+  <a id="fabWhatsapp" href="https://wa.me/51994426141" target="_blank" rel="noopener noreferrer" class="fab fab--whatsapp" aria-label="Escribir a Johari Shop Beauty por WhatsApp">
+    <svg class="icon icon--lg" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  </a>
+  <button id="fabAdmin" type="button" class="fab fab--admin" hidden>Panel Administrador</button>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <!-- ============ Diálogos ============ -->
+
+  <div id="cartDrawer" class="overlay overlay--drawer" hidden>
+    <section class="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <header class="panel-head">
+        <h2 id="cartTitle" class="panel-title">Tu carrito</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar carrito"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </header>
+      <div id="cartNotices"></div>
+      <div id="cartBody" class="drawer__body"></div>
+      <footer id="cartFooter" class="drawer__footer"></footer>
+    </section>
+  </div>
+
+  <div id="authDialog" class="overlay" hidden>
+    <section class="dialog dialog--sm" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <header class="panel-head">
+        <h2 id="authTitle" class="panel-title">Mi cuenta</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </header>
+      <div id="authContent" class="dialog__body"></div>
+    </section>
+  </div>
+
+  <div id="checkoutDialog" class="overlay" hidden>
+    <section class="dialog dialog--lg" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <header class="panel-head panel-head--sticky">
+        <h2 id="checkoutTitle" class="panel-title">Finalizar pedido</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar formulario de pedido"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </header>
+      <div class="dialog__body">
+        <div id="checkoutAlert"></div>
+        <form id="checkoutForm" class="form-grid" novalidate>
+          <div class="field field--full">
+            <label for="ckName" class="field__label">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+            <input id="ckName" name="fullName" class="input" autocomplete="name" required maxlength="80" aria-describedby="ckName-err">
+            <p id="ckName-err" class="field__error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ckPhone" class="field__label">Celular <span class="req" aria-hidden="true">*</span></label>
+            <input id="ckPhone" name="phone" class="input" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="987 654 321" aria-describedby="ckPhone-hint ckPhone-err">
+            <p id="ckPhone-hint" class="field__hint">Celular peruano de 9 dígitos; puedes incluir +51.</p>
+            <p id="ckPhone-err" class="field__error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ckEmail" class="field__label">Correo <span class="field__optional">(obligatorio para pagar en línea)</span></label>
+            <input id="ckEmail" name="email" class="input" type="email" autocomplete="email" maxlength="120" aria-describedby="ckEmail-err">
+            <p id="ckEmail-err" class="field__error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ckDistrict" class="field__label">Distrito <span class="req" aria-hidden="true">*</span></label>
+            <input id="ckDistrict" name="district" class="input" autocomplete="address-level3" required maxlength="60" aria-describedby="ckDistrict-err">
+            <p id="ckDistrict-err" class="field__error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ckProvince" class="field__label">Provincia <span class="req" aria-hidden="true">*</span></label>
+            <input id="ckProvince" name="province" class="input" autocomplete="address-level2" required maxlength="60" aria-describedby="ckProvince-err">
+            <p id="ckProvince-err" class="field__error" hidden></p>
+          </div>
+          <div class="field field--full">
+            <label for="ckAddress" class="field__label">Dirección de entrega <span class="req" aria-hidden="true">*</span></label>
+            <input id="ckAddress" name="address" class="input" autocomplete="street-address" required maxlength="160" aria-describedby="ckAddress-err">
+            <p id="ckAddress-err" class="field__error" hidden></p>
+          </div>
+          <div class="field field--full">
+            <label for="ckReference" class="field__label">Referencia <span class="field__optional">(opcional)</span></label>
+            <input id="ckReference" name="reference" class="input" maxlength="160">
+          </div>
+          <div class="field field--full">
+            <label for="ckNotes" class="field__label">Observaciones <span class="field__optional">(opcional)</span></label>
+            <textarea id="ckNotes" name="notes" class="input" rows="2" maxlength="500" placeholder="Ej.: tono, fragancia o diseños elegidos, horario de entrega…"></textarea>
+          </div>
+
+          <fieldset class="field field--full pay-options" aria-describedby="ckMethod-err">
+            <legend class="field__label">¿Cómo quieres completar tu pedido? <span class="req" aria-hidden="true">*</span></legend>
+            <label class="pay-option" id="payOptionOnline">
+              <input type="radio" name="method" value="online">
+              <span class="pay-option__body">
+                <span class="pay-option__title"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Pagar ahora con tarjeta o Yape</span>
+                <span class="pay-option__desc" id="onlinePayDesc">Pago seguro procesado por Culqi. Se cobra el total de productos; el envío se coordina después por WhatsApp.</span>
+              </span>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="method" value="whatsapp">
+              <span class="pay-option__body">
+                <span class="pay-option__title"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Coordinar el pago por WhatsApp</span>
+                <span class="pay-option__desc">Envías tu pedido a la tienda y te confirman disponibilidad, envío y datos de pago.</span>
+                <span class="pay-option__extra field">
+                  <span class="field__label" id="ckPreferred-label">Medio de pago preferido</span>
+                  <select id="ckPreferred" name="preferred" class="input input--sm" aria-labelledby="ckPreferred-label"></select>
+                </span>
+              </span>
+            </label>
+            <p id="ckMethod-err" class="field__error" hidden></p>
+          </fieldset>
+
+          <div class="field--full summary">
+            <h3 class="summary__title">Resumen</h3>
+            <div id="checkoutSummary"></div>
+            <p class="summary__note">Costo de envío por coordinar por WhatsApp. No incluido en el total de productos.</p>
+          </div>
+
+          <div class="field--full form-actions">
+            <button type="button" class="btn btn--ghost" data-close>Volver al carrito</button>
+            <button id="checkoutSubmit" type="submit" class="btn btn--primary">Continuar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div id="resultDialog" class="overlay" hidden>
+    <section class="dialog dialog--sm" role="dialog" aria-modal="true" aria-labelledby="resultTitle" aria-describedby="resultBody">
+      <div class="dialog__body">
+        <h2 id="resultTitle" class="panel-title"></h2>
+        <div id="resultBody" class="stack muted"></div>
+        <div id="resultActions" class="stack"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="adminDialog" class="overlay" hidden>
+    <section class="dialog dialog--xl" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <header class="panel-head">
+        <div>
+          <h2 id="adminTitle" class="panel-title">Panel Administrador</h2>
+          <p id="adminModeNote" class="muted small"></p>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar panel"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </header>
+      <div class="dialog__body">
+        <div class="tabs" role="tablist" aria-label="Secciones del panel">
+          <button id="tabInventory" class="tabs__tab" role="tab" aria-selected="true" aria-controls="panelInventory" type="button">Inventario</button>
+          <button id="tabOrders" class="tabs__tab" role="tab" aria-selected="false" aria-controls="panelOrders" type="button" tabindex="-1">Pedidos pagados</button>
+        </div>
+
+        <div id="panelInventory" role="tabpanel" aria-labelledby="tabInventory">
+          <div id="adminStats" class="stats"></div>
+          <div class="admin-toolbar">
+            <div class="field admin-toolbar__search">
+              <label for="adminSearch" class="field__label">Buscar en el inventario</label>
+              <input id="adminSearch" class="input" type="search" autocomplete="off" placeholder="Nombre o marca">
+            </div>
+            <div class="field">
+              <label for="adminFilter" class="field__label">Mostrar</label>
+              <select id="adminFilter" class="input">
+                <option value="all">Todos</option>
+                <option value="in">Con stock</option>
+                <option value="unknown">Stock por confirmar</option>
+                <option value="out">Agotados</option>
+              </select>
+            </div>
+            <button id="adminAddBtn" type="button" class="btn btn--primary">+ Agregar producto</button>
+          </div>
+          <details class="admin-tools">
+            <summary>Herramientas de catálogo</summary>
+            <div class="admin-tools__actions">
+              <button id="adminImportBtn" type="button" class="btn btn--outline btn--sm">Importar productos del PDF que falten</button>
+              <button id="adminExampleStockBtn" type="button" class="btn btn--outline btn--sm">Aplicar stock de ejemplo</button>
+            </div>
+            <p class="muted small">La importación solo agrega productos del catálogo inicial que no existan y no sobrescribe cambios. El stock de ejemplo sirve solo para probar.</p>
+          </details>
+          <p id="adminListCount" class="muted small" aria-live="polite"></p>
+          <ul id="adminList" class="admin-list"></ul>
+        </div>
+
+        <div id="panelOrders" role="tabpanel" aria-labelledby="tabOrders" hidden>
+          <p class="muted small">Pedidos pagados en línea con Culqi. Coordina el envío con cada clienta por WhatsApp; el stock de estos pedidos ya se descontó.</p>
+          <ul id="orderList" class="admin-list"></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="productFormDialog" class="overlay" hidden>
+    <section class="dialog dialog--lg" role="dialog" aria-modal="true" aria-labelledby="pfTitle">
+      <header class="panel-head panel-head--sticky">
+        <h2 id="pfTitle" class="panel-title">Producto</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar formulario"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </header>
+      <form id="productForm" class="dialog__body form-grid" novalidate>
+        <div id="pfAlert" class="field--full"></div>
+        <div class="field field--full">
+          <label for="pfName" class="field__label">Nombre <span class="req" aria-hidden="true">*</span></label>
+          <input id="pfName" name="name" class="input" required maxlength="120" aria-describedby="pfName-err">
+          <p id="pfName-err" class="field__error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="pfBrand" class="field__label">Marca</label>
+          <input id="pfBrand" name="brand" class="input" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="pfCategory" class="field__label">Categoría <span class="req" aria-hidden="true">*</span></label>
+          <select id="pfCategory" name="category" class="input" required aria-describedby="pfCategory-err"></select>
+          <p id="pfCategory-err" class="field__error" hidden></p>
+        </div>
+        <div class="field field--full">
+          <label for="pfPresentation" class="field__label">Presentación o variante general</label>
+          <input id="pfPresentation" name="presentation" class="input" maxlength="120" placeholder="Ej.: Tono: Rosewood · 50 ml · Full size">
+        </div>
+        <div class="field field--full">
+          <label for="pfDescription" class="field__label">Descripción</label>
+          <textarea id="pfDescription" name="description" class="input" rows="3" maxlength="1000"></textarea>
+        </div>
+        <div class="field">
+          <label for="pfPrice" class="field__label">Precio (S/)</label>
+          <input id="pfPrice" name="price" class="input" inputmode="decimal" placeholder="90.00" aria-describedby="pfPrice-err">
+          <label class="check"><input id="pfPriceAsk" type="checkbox"> Sin precio publicado («Consultar precio»)</label>
+          <p id="pfPrice-err" class="field__error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="pfPrevPrice" class="field__label">Precio anterior (opcional)</label>
+          <input id="pfPrevPrice" name="previousPrice" class="input" inputmode="decimal" placeholder="Se muestra tachado" aria-describedby="pfPrevPrice-err">
+          <p id="pfPrevPrice-err" class="field__error" hidden></p>
+        </div>
+        <div id="pfStockWrap" class="field field--full">
+          <label for="pfStock" class="field__label">Stock (unidades)</label>
+          <input id="pfStock" name="stock" class="input input--short" inputmode="numeric" placeholder="0" aria-describedby="pfStock-hint pfStock-err">
+          <label class="check"><input id="pfStockUnknown" type="checkbox"> Stock pendiente de confirmar</label>
+          <p id="pfStock-hint" class="field__hint">Entero igual o mayor que 0. Con 0 el producto se muestra AGOTADO.</p>
+          <p id="pfStock-err" class="field__error" hidden></p>
+        </div>
+        <fieldset class="field--full boxed">
+          <legend class="boxed__legend">Variantes con inventario propio (opcional)</legend>
+          <p class="field__hint">Tonos, modelos o packs. La clienta deberá elegir una y el stock se controla por variante. Si dejas el precio vacío se usa el del producto.</p>
+          <div id="pfVariants" class="variants"></div>
+          <p id="pfVariants-err" class="field__error" hidden></p>
+          <button id="pfAddVariant" type="button" class="btn btn--outline btn--sm">+ Agregar variante</button>
+        </fieldset>
+        <fieldset class="field--full boxed">
+          <legend class="boxed__legend">Imagen</legend>
+          <div class="image-picker">
+            <div id="pfImagePreview" class="image-picker__preview"></div>
+            <div class="stack">
+              <div class="field">
+                <label for="pfImageUrl" class="field__label">URL de imagen (https)</label>
+                <input id="pfImageUrl" class="input" type="url" inputmode="url" placeholder="https://…" aria-describedby="pfImage-err">
+              </div>
+              <div class="field">
+                <label for="pfImageFile" class="field__label">O subir una foto (JPG, PNG o WebP)</label>
+                <input id="pfImageFile" type="file" accept="image/jpeg,image/png,image/webp">
+              </div>
+              <button id="pfImageRemove" type="button" class="link-btn">Quitar imagen</button>
+              <p id="pfImage-err" class="field__error" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+        <p id="pfSource" class="field--full muted small"></p>
+        <div class="field--full form-actions">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button id="pfSubmit" type="submit" class="btn btn--primary">Guardar producto</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div id="confirmDialog" class="overlay" hidden>
+    <section class="dialog dialog--sm" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmBody">
+      <div class="dialog__body">
+        <h2 id="confirmTitle" class="panel-title">¿Confirmar?</h2>
+        <div id="confirmBody" class="stack muted"></div>
+        <div class="form-actions">
+          <button type="button" id="confirmCancel" class="btn btn--ghost">Cancelar</button>
+          <button type="button" id="confirmOk" class="btn btn--primary">Confirmar</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <noscript><p class="noscript">Esta tienda necesita JavaScript activado para funcionar.</p></noscript>
+</body>
+</html>

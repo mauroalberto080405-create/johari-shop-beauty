@@ -1,0 +1,19 @@
+{
+  "name": "johari-shop-beauty-functions",
+  "description": "Cloud Functions de Johari Shop Beauty: pagos en línea con Culqi.",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.1.0"
+  }
+}
