@@ -29,6 +29,7 @@ export const DemoBackend = {
       this.persist();
     } else {
       this.products = saved.value.map(sanitizeProduct).filter(Boolean);
+      this.restoreCatalogImages();
     }
 
     // Sincroniza cambios hechos en otra pestaña del mismo navegador.
@@ -53,6 +54,33 @@ export const DemoBackend = {
 
   persist() {
     LocalStore.write(CONFIG.STORAGE.products, this.products);
+  },
+
+  /**
+   * Reparación única: los inventarios guardados con la primera versión de la tienda
+   * pudieron perder la foto al migrar. Se devuelve la foto del catálogo del PDF
+   * solo a los productos de ese catálogo que quedaron sin imagen.
+   */
+  restoreCatalogImages() {
+    const flag = `${CONFIG.STORAGE.products}.fotos-restauradas`;
+    if (LocalStore.readRaw(flag)) return;
+    const seedImages = new Map(seedProducts().map((p) => [p.id, p.image]));
+    let restored = 0;
+    for (const product of this.products) {
+      const image = seedImages.get(product.id);
+      if (!product.image && image) {
+        product.image = image;
+        restored += 1;
+      }
+    }
+    if (restored) {
+      try {
+        this.persist();
+      } catch {
+        return; // sin espacio: se reintentará en la próxima visita
+      }
+    }
+    LocalStore.writeRaw(flag, '1');
   },
 
   requireAdmin() {

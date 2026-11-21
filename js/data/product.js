@@ -8,9 +8,19 @@ import { SEED_PRODUCTS } from './seed.js';
 const str = (value, max) => (typeof value === 'string' ? value.slice(0, max) : '');
 const positiveMoney = (value) => (typeof value === 'number' && Number.isFinite(value) && value > 0 ? Math.round(value * 100) / 100 : null);
 
+/**
+ * La primera versión de la tienda (un solo HTML) guardaba las fotos como «pdf:p4».
+ * Se traducen a la ruta actual para que los inventarios guardados conserven su imagen.
+ */
+function migrateImage(src) {
+  const legacy = typeof src === 'string' ? /^pdf:(p\d+)$/.exec(src) : null;
+  return legacy ? `assets/img/products/${legacy[1]}.jpg` : src;
+}
+
 /** Normaliza un producto proveniente de almacenamiento o red. Devuelve null si no es válido. */
 export function sanitizeProduct(raw) {
   if (!raw || typeof raw !== 'object' || typeof raw.id !== 'string' || !raw.id) return null;
+  const image = migrateImage(raw.image);
   const price = positiveMoney(raw.price);
   const previous = positiveMoney(raw.previousPrice);
   const variants = Array.isArray(raw.variants)
@@ -38,7 +48,7 @@ export function sanitizeProduct(raw) {
     previousPrice: previous !== null && price !== null && previous > price ? previous : null,
     stock: variants.length ? null : (Validate.isNonNegInt(raw.stock) ? raw.stock : null),
     variants,
-    image: Validate.imageSrc(raw.image) ? raw.image : '',
+    image: Validate.imageSrc(image) ? image : '',
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : 0,
     source: str(raw.source, 80)
   };
